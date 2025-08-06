@@ -5,6 +5,12 @@ export default function Home() {
     <div className="container mx-auto max-w-7xl">
       {/* hero */}
       <Hero />
+      <section className="min-h-screen"></section>
+      <section className="min-h-screen"></section>
+      <section className="min-h-screen"></section>
+      <section className="min-h-screen"></section>
+      <section className="min-h-screen"></section>
+      <section className="min-h-screen"></section>
       {/* about */}
       {/* projects */}
       {/* experience */}

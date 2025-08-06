@@ -20,7 +20,7 @@ export default function HeroText() {
           animate="visible"
           transition={{ delay: 1 }}
         >
-          Hi&nbsp;I’m&nbsp;Ali
+          Hi&nbsp;I’m&nbsp;Osman
         </motion.h1>
 
         <div className="flex flex-col items-start">
