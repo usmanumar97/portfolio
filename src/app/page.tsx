@@ -2,21 +2,20 @@ import Hero from "./sections/Hero";
 
 export default function Home() {
   return (
-    <div className="container mx-auto max-w-7xl">
-      {/* hero */}
+    <>
+      {/* full-bleed hero (edge-to-edge, no purple bar) */}
       <Hero />
-      <section className="min-h-screen"></section>
-      <section className="min-h-screen"></section>
-      <section className="min-h-screen"></section>
-      <section className="min-h-screen"></section>
-      <section className="min-h-screen"></section>
-      <section className="min-h-screen"></section>
-      {/* about */}
-      {/* projects */}
-      {/* experience */}
-      {/* testimonial */}
-      {/* contact */}
-      {/* footer */}
-    </div>
+
+      {/* page-wide container for everything else */}
+      <div className="container mx-auto max-w-7xl px-8">
+        <section className="min-h-screen" />
+        <section className="min-h-screen" />
+        <section className="min-h-screen" />
+        <section className="min-h-screen" />
+        <section className="min-h-screen" />
+        <section className="min-h-screen" />
+        {/* about / projects / experience / testimonial / contact / footer */}
+      </div>
+    </>
   );
 }
