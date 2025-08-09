@@ -8,6 +8,7 @@ import { useMediaQuery } from "react-responsive";
 import HeroText from "../components/HeroText";
 import ParallaxBackground from "../components/ParallaxBackground";
 import { Astronaut } from "../components/Astronaut";
+import Loader from "../components/Loader";
 
 export default function Hero() {
   // Match teacher: scale down on desktop, smaller again on tablets/phones
@@ -35,7 +36,7 @@ export default function Hero() {
         style={{ width: "100vw", height: "100vh" }}
       >
         <Canvas camera={{ position: [0, 1, cameraPosZ] }} shadows>
-          <Suspense fallback={null}>
+          <Suspense fallback={<Loader />}>
             {/* Bob & rotate gently */}
             <Float rotationIntensity={1} floatIntensity={1.2}>
               <Astronaut scale={modelScale} position={[0, modelY, 0]} />
