@@ -11,8 +11,9 @@ export default function About() {
           <Image
             src="/assets/coding-pov.png"
             alt="Coding point of view illustration"
-            width={400}
-            height={300}
+            width={1800}
+            height={1200}
+            unoptimized
             className="absolute scale-[1.75] -right-[5rem] -top-[1rem] md:scale-[3] md:left-50 md:inset-y-10 lg:scale-[2.5]"
             priority
           />
