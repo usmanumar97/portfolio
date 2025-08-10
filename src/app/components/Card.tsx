@@ -1,5 +1,6 @@
 interface CardProps {
   text: string;
+  style?: React.CSSProperties;
 }
 
 export default function Card({ style, text }: CardProps) {
