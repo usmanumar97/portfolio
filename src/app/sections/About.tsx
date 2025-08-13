@@ -3,7 +3,16 @@
 import Image from "next/image";
 import Card from "../components/Card";
 import { useRef } from "react";
-import { World } from "../components/World";
+// import { World } from "../components/World";
+
+import dynamic from "next/dynamic";
+// ⬇️ import World dynamically with SSR off
+const World = dynamic(
+  () => import("../components/World").then((m) => m.World),
+  {
+    ssr: false,
+  }
+);
 
 export default function About() {
   const grid2Container = useRef<HTMLDivElement>(null);
