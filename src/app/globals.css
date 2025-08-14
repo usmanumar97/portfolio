@@ -136,3 +136,61 @@ body {
 .field-input-focus {
   @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20;
 }
+
+/* Rainfall Properties */
+
+@keyframes stem {
+  0%,
+  65% {
+    opacity: 1;
+  }
+  75%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes splat {
+  0%,
+  80% {
+    opacity: 1;
+    transform: scale(0);
+  }
+  90% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+@keyframes drop {
+  0% {
+    transform: translateY(0vh);
+  }
+  75% {
+    transform: translateY(90vh);
+  }
+  100% {
+    transform: translateY(90vh);
+  }
+}
+
+@layer utilities {
+  .animate-drop {
+    animation-name: drop;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+  .animate-stem {
+    animation-name: stem;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+  .animate-splat {
+    animation-name: splat;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+}

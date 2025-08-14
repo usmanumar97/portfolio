@@ -6,6 +6,8 @@ import { useRef } from "react";
 import dynamic from "next/dynamic";
 import CopyEmailButton from "../components/CopyEmailButton";
 import LogosMarquee from "../components/LogosMarquee";
+import CareerTimeline from "../components/Timeline";
+import { SectionHeading } from "../components/SectionHeading";
 const World = dynamic(
   () => import("../components/World").then((m) => m.World),
   {
@@ -155,6 +157,17 @@ export default function About() {
         <div className="grid-default-color grid-5">
           <div className="flex h-full w-full items-center justify-center">
             <LogosMarquee />
+          </div>
+        </div>
+
+        {/* Career Progression  */}
+        <div className="md:col-span-6 mt-40">
+          <SectionHeading
+            title="My Journey"
+            subtitle="A look at the roles and experiences that have shaped my skills."
+          />
+          <div className="mt-6">
+            <CareerTimeline />
           </div>
         </div>
       </div>
