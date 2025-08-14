@@ -31,13 +31,12 @@ type TLItem = {
 
 type Props = {
   items?: TLItem[];
-  // If provided, the timeline will listen to this element's scroll instead of window
   scrollRef?: React.RefObject<HTMLDivElement | null>;
 };
 
 const DEFAULT_ITEMS: TLItem[] = [
   {
-    year: 2019,
+    year: "2015-2019",
     title: "Graduated with B.Sc. in Information Technology",
     company: "Middlesex University, Dubai",
     summary:
@@ -50,7 +49,7 @@ const DEFAULT_ITEMS: TLItem[] = [
     ],
   },
   {
-    year: 2019,
+    year: "2019-2020",
     title: "Software Engineer Intern",
     company: "Emirates NBD",
     summary:
@@ -78,7 +77,7 @@ const DEFAULT_ITEMS: TLItem[] = [
     ],
   },
   {
-    year: 2024,
+    year: "2023-2024",
     title: "Graduated with M.Sc. in Data Science",
     company: "Middlesex University, London",
     summary: "Specialized in applied machine learning and data engineering.",
