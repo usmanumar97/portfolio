@@ -207,12 +207,10 @@ export default function CareerTimeline({
 
   return (
     <Timeline
-      position={isMobile ? "right" : "alternate"}
+      position="alternate"
       sx={{
         maxWidth: 980,
         mx: "auto",
-        px: { xs: 1.5, md: 0 }, // breathing room on phones
-        py: { xs: 1, md: 0 },
         "& .MuiTimelineItem-root:before": { flex: 0, padding: 0 },
       }}
     >
@@ -222,14 +220,8 @@ export default function CareerTimeline({
 
         return (
           <TimelineItem key={`${e.year}-${i}`}>
-            {/* Year column (hide on mobile) */}
             <TimelineOppositeContent
-              sx={{
-                display: { xs: "none", md: "block" },
-                m: "auto 0",
-                px: 2,
-                color: "rgba(255,255,255,.35)",
-              }}
+              sx={{ m: "auto 0", px: 2, color: "rgba(255,255,255,.35)" }}
               variant="body2"
             >
               {e.year}
@@ -254,18 +246,12 @@ export default function CareerTimeline({
                   cursor: "pointer",
                   bgcolor: isActive ? "#7a57db" : "#4B85F6",
                   color: "#0B0F1A",
-                  width: { xs: 34, md: 44 }, // smaller dot on phones
-                  height: { xs: 34, md: 44 },
-                  "& svg": { fontSize: { xs: 18, md: 22 } },
                   boxShadow: isActive
-                    ? {
-                        xs: "0 0 0 6px rgba(122,87,219,.22)",
-                        md: "0 0 0 8px rgba(122,87,219,.28)",
-                      }
+                    ? "0 0 0 8px rgba(122,87,219,.28)"
                     : isOpen
                     ? "0 0 0 6px rgba(75,133,246,.25)"
                     : "0 0 0 3px rgba(75,133,246,.18)",
-                  transform: isActive ? "scale(1.04)" : "scale(1)",
+                  transform: isActive ? "scale(1.08)" : "scale(1)",
                   transition:
                     "box-shadow .22s ease, transform .22s ease, background-color .22s ease",
                 }}
@@ -291,12 +277,9 @@ export default function CareerTimeline({
                 aria-expanded={isOpen}
                 sx={{
                   cursor: isMobile ? "default" : "pointer",
-                  borderRadius: 12,
-                  p: { xs: 1.25, md: 2 },
-                  pr: { xs: 1.5, md: 3 },
-                  ml: { xs: 1, md: 0 }, // keep away from edge on phones
-                  mr: { xs: 0, md: 0 },
-                  maxWidth: { xs: "92vw", md: "unset" },
+                  borderRadius: 2,
+                  p: { xs: 1.5, md: 2 },
+                  pr: { xs: 2, md: 3 },
                   color: "#fff",
                   bgcolor: "rgba(44,48,78,.35)",
                   border: "1px solid rgba(255,255,255,.06)",
@@ -309,40 +292,21 @@ export default function CareerTimeline({
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "flex-start",
-                  "&:hover": { transform: { md: "translateY(-2px)" } },
+                  "&:hover": { transform: "translateY(-2px)" },
                 }}
               >
-                {/* On mobile, show a tiny year inside the card */}
-                {isMobile && (
-                  <Typography
-                    variant="caption"
-                    sx={{ color: "rgba(255,255,255,.45)", mb: 0.5 }}
-                  >
-                    {e.year}
-                  </Typography>
-                )}
-
                 <Typography
                   variant="h6"
-                  sx={{
-                    fontWeight: 800,
-                    lineHeight: 1.15,
-                    mb: 0.5,
-                    fontSize: { xs: "1.125rem", md: "1.25rem" }, // 18 / 20 px
-                    wordBreak: "break-word",
-                    hyphens: "auto",
-                  }}
+                  sx={{ fontWeight: 800, lineHeight: 1.15, mb: 0.5 }}
                 >
                   {e.title}
                 </Typography>
-
                 {e.company && (
                   <Typography
                     variant="body2"
                     sx={{
                       color: "rgba(255,255,255,.65)",
-                      mb: { xs: 0.5, md: 1 },
-                      fontSize: { xs: ".95rem", md: "1rem" },
+                      mb: { xs: 0, md: 1 },
                     }}
                   >
                     {e.company}
@@ -352,10 +316,7 @@ export default function CareerTimeline({
                 {e.summary && (
                   <Typography
                     variant="body2"
-                    sx={{
-                      color: "rgba(255,255,255,.8)",
-                      fontSize: { xs: ".98rem", md: "1rem" },
-                    }}
+                    sx={{ color: "rgba(255,255,255,.8)" }}
                   >
                     {e.summary}
                   </Typography>
@@ -363,12 +324,7 @@ export default function CareerTimeline({
 
                 {!!e?.tags?.length && (
                   <Box
-                    sx={{
-                      mt: 1,
-                      display: "flex",
-                      gap: 0.75,
-                      flexWrap: "wrap",
-                    }}
+                    sx={{ mt: 1.25, display: "flex", gap: 1, flexWrap: "wrap" }}
                   >
                     {e.tags.map((t) => (
                       <Chip
@@ -376,11 +332,6 @@ export default function CareerTimeline({
                         label={t}
                         size="small"
                         sx={{
-                          height: { xs: 24, md: 28 },
-                          "& .MuiChip-label": {
-                            px: { xs: 0.75, md: 1 },
-                            fontSize: { xs: 12, md: 13 },
-                          },
                           color: "#CFE0FF",
                           bgcolor: "rgba(91,118,209,.18)",
                           border: "1px solid rgba(91,118,209,.35)",
@@ -392,7 +343,7 @@ export default function CareerTimeline({
 
                 <Collapse in={isOpen} timeout={220} unmountOnExit>
                   {!!e?.details?.length && (
-                    <Box sx={{ mt: 1.25, width: "100%" }}>
+                    <Box sx={{ mt: 1.5, width: "100%" }}>
                       {e.details.map((d, idx) => (
                         <Typography
                           key={idx}
@@ -402,7 +353,6 @@ export default function CareerTimeline({
                             gap: 1,
                             alignItems: "flex-start",
                             color: "rgba(255,255,255,.88)",
-                            fontSize: { xs: ".98rem", md: "1rem" },
                             "&::before": {
                               content: '""',
                               mt: "9px",
