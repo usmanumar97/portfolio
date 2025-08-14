@@ -40,6 +40,7 @@ export default function DailyQuoteCard() {
 
       setIsCached(false);
 
+      // basePath-friendly
       const controller = new AbortController();
       const res = await fetch("api/daily-quote", { signal: controller.signal });
 
@@ -84,16 +85,17 @@ export default function DailyQuoteCard() {
     };
   }, [load]);
 
-  // dynamic sizing for long quotes
   const isLong = (quote?.text?.length ?? 0) > 150;
 
   return (
     <div className="relative flex h-full w-full items-center justify-center">
+      {/* watermark / aura */}
       <div className="pointer-events-none absolute inset-0 select-none opacity-10">
         <div className="absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_50%,rgba(255,255,255,.25),transparent_70%)]" />
       </div>
 
-      <figure className="relative z-10 max-w-[34rem] text-center">
+      {/* group enables hover-reveal of the button */}
+      <figure className="group relative z-10 max-w-[34rem] text-center">
         {loading ? (
           <div className="mx-auto h-5 w-2/3 animate-pulse rounded bg-white/20" />
         ) : (
@@ -108,18 +110,18 @@ export default function DailyQuoteCard() {
               “{quote?.text}”
             </blockquote>
 
-            <figcaption className="mt-3 text-sm md:text-base text-white/70 flex items-center justify-center gap-2">
-              <span> {quote?.author}</span>
-              {isCached && <span className=""></span>}
+            <figcaption className="mt-3 text-sm md:text-base text-white/70">
+              — {quote?.author}
             </figcaption>
           </>
         )}
 
-        {/* Refresh only when not loading AND not showing cached quote */}
+        {/* Refresh is rendered only when not loading and not cached,
+            AND it's visually hidden until hover/focus */}
         {!loading && !isCached && (
           <button
             onClick={load}
-            className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-white/80 hover:bg-white/10 transition"
+            className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-white/80 transition-opacity opacity-0 group-hover:opacity-100 focus:opacity-100 pointer-events-none group-hover:pointer-events-auto focus:pointer-events-auto"
             aria-label="Get a new quote"
           >
             Refresh
