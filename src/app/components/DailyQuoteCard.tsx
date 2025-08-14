@@ -89,7 +89,6 @@ export default function DailyQuoteCard() {
 
   return (
     <div className="relative flex h-full w-full items-center justify-center">
-      {/* watermark / aura */}
       <div className="pointer-events-none absolute inset-0 select-none opacity-10">
         <div className="absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_50%,rgba(255,255,255,.25),transparent_70%)]" />
       </div>

@@ -108,7 +108,7 @@ export default function About() {
         </div>
 
         {/* Career Progression  */}
-        <div className="md:col-span-6 mt-40">
+        {/* <div className="md:col-span-6 mt-40">
           <SectionHeading
             title="My Journey"
             subtitle="A look at the roles and experiences that have shaped my skills."
@@ -116,7 +116,7 @@ export default function About() {
           <div className="mt-6">
             <CareerTimeline />
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

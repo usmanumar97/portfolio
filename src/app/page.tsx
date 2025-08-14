@@ -1,5 +1,6 @@
 import Hero from "./sections/Hero";
 import About from "./sections/About";
+import CareerProgression from "./sections/CareerProgression";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <div className="container mx-auto max-w-7xl px-8">
         {/* About */}
         <About />
+        <CareerProgression />
         <section className="min-h-screen" />
         <section className="min-h-screen" />
         <section className="min-h-screen" />
