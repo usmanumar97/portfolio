@@ -8,7 +8,6 @@ type FormData = { name: string; email: string; message: string };
 
 const INITIAL_FORM: FormData = { name: "", email: "", message: "" };
 
-// tiny HTML escaper so we can safely create an HTML body
 function escapeHtml(s: string) {
   return s
     .replace(/&/g, "&amp;")
@@ -23,6 +22,20 @@ export default function Contact() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [status, setStatus] = React.useState<"idle" | "ok" | "error">("idle");
   const [errorMsg, setErrorMsg] = React.useState("");
+
+  const hideTimer = React.useRef<number | null>(null);
+  React.useEffect(() => {
+    if (status === "ok" || status === "error") {
+      if (hideTimer.current) window.clearTimeout(hideTimer.current);
+      hideTimer.current = window.setTimeout(() => {
+        setStatus("idle");
+        setErrorMsg("");
+      }, 4000);
+    }
+    return () => {
+      if (hideTimer.current) window.clearTimeout(hideTimer.current);
+    };
+  }, [status]);
 
   const handleChange = React.useCallback<FormChangeHandler>(
     (e) => {
@@ -57,7 +70,6 @@ export default function Contact() {
       setStatus("idle");
       setErrorMsg("");
 
-      // Build subject/text/html to match your route.ts sendMail signature
       const subject = `New message from ${formData.name}`;
       const text = `${formData.message}
 
@@ -75,21 +87,13 @@ From: ${formData.name} <${formData.email}>`;
         const res = await fetch("/api/contact", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email: formData.email, // visitor's email (used as replyTo server-side)
-            subject,
-            text,
-            html,
-          }),
+          body: JSON.stringify({ email: formData.email, subject, text, html }),
         });
 
-        // Always try to read JSON and check { ok }
         let data: { ok?: boolean; error?: string } | null = null;
         try {
           data = await res.json();
-        } catch {
-          // ignore JSON parse errors; we'll fall back to res.ok
-        }
+        } catch {}
 
         if (!res.ok || !data?.ok) {
           const msg = data?.error ?? `Request failed (${res.status})`;
@@ -197,7 +201,12 @@ From: ${formData.name} <${formData.email}>`;
             {isLoading ? "Sending..." : "Send"}
           </button>
 
-          <p className="mt-3 text-sm" role="status" aria-live="polite">
+          <p
+            className="mt-3 text-sm"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+          >
             {status === "ok" && "Thanks! Your message has been sent."}
             {status === "error" && errorMsg}
           </p>
