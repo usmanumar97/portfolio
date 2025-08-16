@@ -42,7 +42,7 @@ export default function About() {
         </div>
 
         {/* Grid 2 */}
-        <div className="grid-default-color grid-2">
+        <div className="grid-default-color grid-2 place-items-center">
           <DailyQuoteCard />
         </div>
 
@@ -106,17 +106,6 @@ export default function About() {
             <LogosMarquee />
           </div>
         </div>
-
-        {/* Career Progression  */}
-        {/* <div className="md:col-span-6 mt-40">
-          <SectionHeading
-            title="My Journey"
-            subtitle="A look at the roles and experiences that have shaped my skills."
-          />
-          <div className="mt-6">
-            <CareerTimeline />
-          </div>
-        </div> */}
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 import Hero from "./sections/Hero";
 import About from "./sections/About";
 import CareerProgression from "./sections/CareerProgression";
+import Contact from "./sections/Contact";
 
 export default function Home() {
   return (
@@ -13,12 +14,7 @@ export default function Home() {
         {/* About */}
         <About />
         <CareerProgression />
-        <section className="min-h-screen" />
-        <section className="min-h-screen" />
-        <section className="min-h-screen" />
-        <section className="min-h-screen" />
-        <section className="min-h-screen" />
-        <section className="min-h-screen" />
+        <Contact />
 
         {/* projects / experience / testimonial / contact / footer */}
       </div>

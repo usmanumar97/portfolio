@@ -1,10 +1,9 @@
 import { NextResponse } from "next/server";
+
 export const runtime = "nodejs";
 
 export async function GET() {
   const key = process.env.API_NINJAS_KEY;
-
-  console.log("Has key:", Boolean(process.env.API_NINJAS_KEY));
 
   if (!key) {
     console.error(
@@ -16,7 +15,7 @@ export async function GET() {
   try {
     const r = await fetch("https://api.api-ninjas.com/v1/quotes", {
       headers: { "X-Api-Key": key },
-      next: { revalidate: 60 * 60 * 24 },
+      next: { revalidate: 60 * 60 * 24 }, // 24h
     });
 
     if (!r.ok) {
@@ -27,9 +26,7 @@ export async function GET() {
       );
     }
 
-    console.log("Has key:", Boolean(process.env.API_NINJAS_KEY));
-
-    const arr = await r.json();
+    const arr = (await r.json()) as Array<{ quote: string; author: string }>;
     const q = Array.isArray(arr) ? arr[0] : null;
 
     return NextResponse.json(
@@ -44,7 +41,8 @@ export async function GET() {
         },
       }
     );
-  } catch {
+  } catch (err) {
+    console.error("Quote fetch error:", err);
     return NextResponse.json(
       {
         text: "Make it work, make it right, make it fast.",
